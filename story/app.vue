@@ -1,15 +1,19 @@
 <template>
   <div>hello word</div>
-  <AppNavigator></AppNavigator>
+  <AppNavigator defaultPath="normal/button">
+    <app-navigator-page />
+  </AppNavigator>
 </template>
 
 <script>
-import {AppNavigator} from './components/navigator/app-navigator';
+import { AppNavigator } from "./components/navigator/app-navigator";
+import { AppNavigatorPage } from "./components/navigator/app-navigator-page";
 export default {
   name: "app",
   components: {
-    AppNavigator
-  }
+    AppNavigator,
+    AppNavigatorPage,
+  },
 };
 </script>
 
