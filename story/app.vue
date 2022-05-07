@@ -1,10 +1,9 @@
 <template>
   <app-navigator defaultPath="normal/button">
     <article class="app-home">
-      <section class="app-header" :style="{height: HomeConfig.headSize + 'px'}">roshan-ui-vue</section>
-      <section class="app-menu">app-menu</section>
-      <section class="app-content">
-        app-content
+      <section class="app-header" :style="{ height: HomeConfig.headSize + 'px' }">roshan-ui-vue</section>
+      <section class="app-menu" :style="{ width: HomeConfig.menuSize + 'px', top: HomeConfig.headSize + 'px' }">app-menu</section>
+      <section class="app-content" :style="{ paddingTop: HomeConfig.headSize + 20 + 'px', paddingLeft: HomeConfig.menuSize + 20 + 'px' }">
         <app-navigator-page />
       </section>
     </article>
@@ -12,16 +11,13 @@
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue';
+import { reactive, ref } from 'vue';
 import { AppNavigator } from './components/navigator/app-navigator';
 import { AppNavigatorPage } from './components/navigator/app-navigator-page';
-const color = ref('green')
-const HomeConfig = {
+const HomeConfig = reactive({
   headSize: 60,
-  menuSize: 300
-}
-
-
+  menuSize: 300,
+});
 </script>
 
 <style lang="scss">
@@ -30,7 +26,7 @@ body {
   margin: 0;
   padding: 0;
 }
-.app-home{
+.app-home {
   .app-header {
     position: fixed;
     top: 0;
@@ -42,10 +38,11 @@ body {
     align-items: center;
     padding: 0 20px;
     box-sizing: border-box;
-    background: v-bind(color);
+    border-bottom: solid 1px #f4f4f4;
   }
   .app-menu {
     position: fixed;
+    border-right: solid 1px #f4f4f4;
   }
   .app-content {
     min-height: 100vh;

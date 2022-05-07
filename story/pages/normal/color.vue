@@ -1,10 +1,10 @@
 <template>
-  <div>button</div>
+  <div>color</div>
 </template>
 
 <script>
 export default {
-  name: 'demo-button',
+  name: 'demo-color',
 };
 </script>
 

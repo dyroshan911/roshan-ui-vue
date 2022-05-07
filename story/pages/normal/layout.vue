@@ -1,10 +1,10 @@
 <template>
-  <div>button</div>
+  <div>layout</div>
 </template>
 
 <script>
 export default {
-  name: 'demo-button',
+  name: 'demo-layout',
 };
 </script>
 
