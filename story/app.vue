@@ -2,7 +2,9 @@
   <app-navigator defaultPath="normal/button">
     <article class="app-home">
       <section class="app-header" :style="{ height: HomeConfig.headSize + 'px' }">roshan-ui-vue</section>
-      <section class="app-menu" :style="{ width: HomeConfig.menuSize + 'px', top: HomeConfig.headSize + 'px' }">app-menu</section>
+      <section class="app-menu" :style="{ width: HomeConfig.menuSize + 'px', top: HomeConfig.headSize + 'px' }">
+        <app-menu></app-menu>
+      </section>
       <section class="app-content" :style="{ paddingTop: HomeConfig.headSize + 20 + 'px', paddingLeft: HomeConfig.menuSize + 20 + 'px' }">
         <app-navigator-page />
       </section>
@@ -14,6 +16,7 @@
 import { reactive, ref } from 'vue';
 import { AppNavigator } from './components/navigator/app-navigator';
 import { AppNavigatorPage } from './components/navigator/app-navigator-page';
+import AppMenu from './components/app/app-menu.vue';
 const HomeConfig = reactive({
   headSize: 60,
   menuSize: 300,
