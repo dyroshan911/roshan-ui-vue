@@ -29,6 +29,7 @@ body {
   margin: 0;
   padding: 0;
 }
+$theme_color: #33cc99;
 .app-home {
   .app-header {
     position: fixed;
@@ -42,10 +43,15 @@ body {
     padding: 0 20px;
     box-sizing: border-box;
     border-bottom: solid 1px #f4f4f4;
+
+    font-style: italic;
+    font-size: 25px;
+    color: $theme_color;
   }
   .app-menu {
     position: fixed;
     border-right: solid 1px #f4f4f4;
+    bottom: 0;
   }
   .app-content {
     min-height: 100vh;
