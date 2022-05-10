@@ -1,4 +1,4 @@
-import { defineComponent, inject, onBeforeUnmount, provide, reactive } from 'vue';
+import { defineComponent, getCurrentInstance, inject, onBeforeUnmount, provide, reactive } from 'vue';
 
 interface Route {
   path?: string;
@@ -17,6 +17,7 @@ function getRoute(): Route {
 const APP_NAVIGATOR_PROVIDER = '@@app-navigator';
 
 function useAppNavigator(props: { defaultPath?: string }) {
+  const ctx = getCurrentInstance();
   const currentRoute = getRoute();
   !currentRoute.path && (currentRoute.path = props.defaultPath);
   window.location.hash = encodeURIComponent(currentRoute.path!);
@@ -28,7 +29,7 @@ function useAppNavigator(props: { defaultPath?: string }) {
     },
   };
   const handler = {
-    hashchange: () => { 
+    hashchange: () => {
       state.route = getRoute();
     },
   };
@@ -38,6 +39,7 @@ function useAppNavigator(props: { defaultPath?: string }) {
     state,
     methods,
   };
+  (ctx as any)._refer = refer;
   provide(APP_NAVIGATOR_PROVIDER, refer);
   return refer;
 }

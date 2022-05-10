@@ -1,26 +1,36 @@
 <template>
-  <app-navigator defaultPath="normal/button">
+  <app-navigator defaultPath="normal/button" ref="navigator">
     <article class="app-home">
-      <section class="app-header" :style="{ height: HomeConfig.headSize + 'px' }">roshan-ui-vue</section>
-      <section class="app-menu" :style="{ width: HomeConfig.menuSize + 'px', top: HomeConfig.headSize + 'px' }">
+      <section class="app-header">
+        <span @click="goHome">roshan-ui-vue</span>
+      </section>
+      <section class="app-menu">
         <app-menu></app-menu>
       </section>
-      <section class="app-content" :style="{ paddingTop: HomeConfig.headSize + 20 + 'px', paddingLeft: HomeConfig.menuSize + 20 + 'px' }">
+      <section class="app-content">
         <app-navigator-page />
       </section>
     </article>
   </app-navigator>
 </template>
 
-<script setup lang="ts">
-import { reactive, ref } from 'vue';
+<script lang="ts">
+// import { reactive, ref } from 'vue';
 import { AppNavigator } from './components/navigator/app-navigator';
 import { AppNavigatorPage } from './components/navigator/app-navigator-page';
 import AppMenu from './components/app/app-menu.vue';
-const HomeConfig = reactive({
-  headSize: 60,
-  menuSize: 300,
-});
+export default {
+  components: {
+    AppNavigator,
+    AppNavigatorPage,
+    AppMenu,
+  },
+  methods: {
+    goHome() {
+      (this.$refs.navigator as any).$._refer.methods.go('/home');
+    },
+  },
+};
 </script>
 
 <style lang="scss">
@@ -30,12 +40,15 @@ body {
   padding: 0;
 }
 $theme_color: #33cc99;
+$headSize: 60px;
+$menuSize: 300px;
 .app-home {
   .app-header {
     position: fixed;
     top: 0;
     left: 0;
     right: 0;
+    height: $headSize;
 
     display: flex;
     justify-content: space-between;
@@ -48,16 +61,22 @@ $theme_color: #33cc99;
     font-size: 25px;
     color: $theme_color;
     user-select: none;
-    cursor: default;
+    span {
+      cursor: pointer;
+    }
   }
   .app-menu {
     position: fixed;
     border-right: solid 1px #ccc;
     bottom: 0;
+    width: $menuSize;
+    top: $headSize;
   }
   .app-content {
     min-height: 100vh;
     box-sizing: border-box;
+    padding-top: $headSize + 20px;
+    padding-left: $menuSize + 20px;
   }
 }
 </style>
