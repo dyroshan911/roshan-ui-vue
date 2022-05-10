@@ -52,6 +52,7 @@ export default {
       white-space: nowrap;
       cursor: pointer;
       transition: all 100ms linear;
+      user-select: none;
 
       &:hover {
         background-color: rgba(#33cc99, 0.1);

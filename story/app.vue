@@ -42,15 +42,17 @@ $theme_color: #33cc99;
     align-items: center;
     padding: 0 20px;
     box-sizing: border-box;
-    border-bottom: solid 1px #f4f4f4;
+    border-bottom: solid 1px #ccc;
 
     font-style: italic;
     font-size: 25px;
     color: $theme_color;
+    user-select: none;
+    cursor: default;
   }
   .app-menu {
     position: fixed;
-    border-right: solid 1px #f4f4f4;
+    border-right: solid 1px #ccc;
     bottom: 0;
   }
   .app-content {
