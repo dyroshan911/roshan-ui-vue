@@ -19,6 +19,7 @@
 import { AppNavigator } from './components/navigator/app-navigator';
 import { AppNavigatorPage } from './components/navigator/app-navigator-page';
 import AppMenu from './components/app/app-menu.vue';
+import { getCurrentInstance } from '@vue/runtime-core';
 export default {
   components: {
     AppNavigator,
@@ -27,6 +28,8 @@ export default {
   },
   methods: {
     goHome() {
+      console.log(this.$refs.navigator);
+
       (this.$refs.navigator as any).$._refer.methods.go('/home');
     },
   },

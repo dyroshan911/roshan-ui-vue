@@ -1,0 +1,7 @@
+@include theme {
+  font-family: $font;
+}
+
+.rs-select-none {
+  user-select: none !important;
+}
