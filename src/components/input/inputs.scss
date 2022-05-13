@@ -1,3 +1,4 @@
+$radius: 2px;
 @include theme {
   .rs-input {
     display: inline-block;
@@ -5,19 +6,19 @@
     .rs-input-inner {
       outline: none;
       border: none;
-      padding: 9px 16px;
-      border-radius: 5px;
+      padding: 7px 12px;
+      border-radius: $radius;
+    }
+    .rs-input-clear {
+      height: 29.5px;
     }
 
     @include statusMixin(input) {
       border: solid 1px $value;
-      .rs-input-inner {
-        background-color: mix($value, white, 5%);
-      }
-      
+      border-radius: $radius;
       
       .rs-input-inner:focus {
-        background-color: mix($value, white, 10%);
+        background-color: mix($value, white, 5%);
       }
     }
   }
