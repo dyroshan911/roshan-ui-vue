@@ -11,10 +11,13 @@
 
     @include statusMixin(input) {
       border: solid 1px $value;
-      background-color: mix($value, white, 10%);
+      .rs-input-inner {
+        background-color: mix($value, white, 5%);
+      }
+      
       
       .rs-input-inner:focus {
-        background-color: mix($value, white, 15%);
+        background-color: mix($value, white, 10%);
       }
     }
   }
