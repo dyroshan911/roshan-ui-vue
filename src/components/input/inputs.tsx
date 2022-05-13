@@ -1,6 +1,7 @@
 import { computed, defineComponent, ref } from 'vue';
+import './inputs.scss';
 
-defineComponent({
+export default defineComponent({
   name: 'rs-input',
   props: {
     status: { type: String, default: 'primary' },
@@ -11,7 +12,7 @@ defineComponent({
     const classes = computed(() => ['rs-input', `rs-input-status-${props.status}`]);
     return () => (
       <div class={classes.value}>
-        <input type='text' v-model={inputValue.value} ref={inputRef} />
+        <input class="rs-input-inner" type="text" v-model={inputValue.value} ref={inputRef} />
       </div>
     );
   },

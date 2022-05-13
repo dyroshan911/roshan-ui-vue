@@ -28,9 +28,8 @@ export default {
   },
   methods: {
     goHome() {
-      console.log(this.$refs.navigator);
-
-      (this.$refs.navigator as any).$._refer.methods.go('/home');
+      (this as any).$refs.navigator.$._refer.methods.go('/home')
+      // (this.$refs.navigator as any).$._refer.methods.go('/home');
     },
   },
 };

@@ -20,7 +20,7 @@ module.exports = defineConfig({
   css: {
     loaderOptions: {
       sass: {
-        prependData: `@import "src/style/global-import.scss"`,
+        additionalData: `@import "src/style/global-import.scss";`,
       },
     },
   },
