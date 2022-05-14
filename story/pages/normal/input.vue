@@ -14,7 +14,7 @@
   </div>
 </template>
 
-<script>
+<script lang="ts">
 import { Input } from '../../../src';
 export default {
   name: 'demo-input',

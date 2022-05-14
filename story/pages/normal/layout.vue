@@ -2,7 +2,7 @@
   <div>layout</div>
 </template>
 
-<script>
+<script lang="ts">
 export default {
   name: 'demo-layout',
 };

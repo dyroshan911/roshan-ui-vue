@@ -2,7 +2,7 @@
   <div>color</div>
 </template>
 
-<script>
+<script lang="ts">
 export default {
   name: 'demo-color',
 };
