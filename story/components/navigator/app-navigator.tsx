@@ -1,4 +1,11 @@
-import { defineComponent, getCurrentInstance, inject, onBeforeUnmount, provide, reactive } from 'vue';
+import {
+  defineComponent,
+  getCurrentInstance,
+  inject,
+  onBeforeUnmount,
+  provide,
+  reactive,
+} from 'vue';
 
 interface Route {
   path?: string;
@@ -34,7 +41,9 @@ function useAppNavigator(props: { defaultPath?: string }) {
     },
   };
   window.addEventListener('hashchange', handler.hashchange);
-  onBeforeUnmount(() => window.removeEventListener('hashchange', handler.hashchange));
+  onBeforeUnmount(() =>
+    window.removeEventListener('hashchange', handler.hashchange)
+  );
   const refer = {
     state,
     methods,

@@ -28,7 +28,7 @@ export default {
   },
   methods: {
     goHome() {
-      (this as any).$refs.navigator.$._refer.methods.go('/home')
+      (this as any).$refs.navigator.$._refer.methods.go('/home');
       // (this.$refs.navigator as any).$._refer.methods.go('/home');
     },
   },
@@ -66,6 +66,8 @@ $menuSize: 300px;
     span {
       cursor: pointer;
     }
+    background-color: rgb(244, 242, 234);
+    z-index: 99;
   }
   .app-menu {
     position: fixed;
@@ -73,6 +75,7 @@ $menuSize: 300px;
     bottom: 0;
     width: $menuSize;
     top: $headSize;
+    background-color: rgb(244, 242, 234);
   }
   .app-content {
     min-height: 100vh;

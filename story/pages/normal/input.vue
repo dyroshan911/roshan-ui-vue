@@ -19,7 +19,6 @@ import { Input } from '../../../src';
 export default {
   name: 'demo-input',
   setup() {
-    debugger;
     const inputRef = Input.use.ref('myInput');
     const handleClear = () => {
       inputRef.value.methods.clear();

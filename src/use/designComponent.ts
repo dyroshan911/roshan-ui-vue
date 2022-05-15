@@ -3,6 +3,8 @@ import {
   defineComponent,
   ExtractPropTypes,
   getCurrentInstance,
+  provide,
+  inject,
   SetupContext,
 } from 'vue';
 
@@ -12,6 +14,7 @@ export function designComponent<
   Refer
 >(componentOptions: {
   name?: string;
+  provideRefer?: boolean;
   props?: PropsOptions;
   setup?: (
     props?: Props,
@@ -21,7 +24,7 @@ export function designComponent<
     render?: () => any;
   };
 }) {
-  const { setup: _setup, ...leftOptions } = componentOptions;
+  const { setup: _setup, provideRefer, ...leftOptions } = componentOptions;
   return {
     ...defineComponent({
       setup(props: Props, context: SetupContext) {
@@ -31,6 +34,15 @@ export function designComponent<
         const { refer, render } = _setup(props, context);
         const ctx = getCurrentInstance() as any;
         ctx._refer = refer;
+        if (provideRefer) {
+          if (!leftOptions.name) {
+            console.error(
+              'designComponent: name is required when provideRefer is true!'
+            );
+          } else {
+            provide(`@@${leftOptions.name}`, refer!);
+          }
+        }
         return render;
       },
       ...leftOptions,
@@ -43,6 +55,9 @@ export function designComponent<
             return ctx.ctx.$refs[refName].$._refer;
           },
         };
+      },
+      inject: (defaultValue?: Refer): Refer => {
+        return inject(`@@${leftOptions.name}`, defaultValue as any);
       },
     },
   };
