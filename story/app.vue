@@ -19,18 +19,19 @@
 import { AppNavigator } from './components/navigator/app-navigator';
 import { AppNavigatorPage } from './components/navigator/app-navigator-page';
 import AppMenu from './components/app/app-menu.vue';
-import { getCurrentInstance } from '@vue/runtime-core';
 export default {
+  setup() {
+    const navigator = AppNavigator.use.ref('navigator');
+    return {
+      goHome() {
+        navigator.value.methods.go('/home');
+      }
+    }
+  },
   components: {
     AppNavigator,
     AppNavigatorPage,
     AppMenu,
-  },
-  methods: {
-    goHome() {
-      (this as any).$refs.navigator.$._refer.methods.go('/home');
-      // (this.$refs.navigator as any).$._refer.methods.go('/home');
-    },
   },
 };
 </script>

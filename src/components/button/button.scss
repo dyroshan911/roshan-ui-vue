@@ -1,0 +1,19 @@
+@include theme{
+  .rs-button {
+    outline: none;
+    border: none;
+    display: inline-block;
+    cursor: pointer;
+    border-radius: 2px;
+    padding: 8px 16px;
+    margin: 2px;
+
+    @include statusMixin(button) {
+      background-color: $value;
+      color: white;
+      &:active {
+        background-color: mix($value, black, 70%);
+      }
+    }
+  }
+}

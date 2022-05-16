@@ -1,5 +1,6 @@
 import { DefineComponent, defineComponent, markRaw, reactive, watch } from "vue";
-import { injectAppNavigator } from "./app-navigator";
+import { AppNavigator } from "./app-navigator";
+// import { injectAppNavigator } from "./app-navigator";
 
 export const AppNavigatorPage = defineComponent({
   name: "app-navigator-page",
@@ -7,7 +8,8 @@ export const AppNavigatorPage = defineComponent({
     const state = reactive<{ PageComponent: null | DefineComponent }>({
       PageComponent: null,
     });
-    const navigator = injectAppNavigator();
+    // const navigator = injectAppNavigator();
+    const navigator = AppNavigator.use.inject();
     const utils = {
       reload: async () => {
         let { path } = navigator.state.route;

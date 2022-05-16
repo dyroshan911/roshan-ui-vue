@@ -19,12 +19,12 @@
 </template>
 
 <script lang="ts">
+import { AppNavigator } from '../navigator/app-navigator';
 import { MENUS, Menu } from './menus';
-import { injectAppNavigator } from '../navigator/app-navigator';
 export default {
   name: 'app-menu',
   setup() {
-    const navigator = injectAppNavigator();
+    const navigator = AppNavigator.use.inject();
     return {
       menus: MENUS,
       navigator,

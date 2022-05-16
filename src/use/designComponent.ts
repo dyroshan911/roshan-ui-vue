@@ -17,8 +17,8 @@ export function designComponent<
   provideRefer?: boolean;
   props?: PropsOptions;
   setup?: (
-    props?: Props,
-    setupContext?: SetupContext
+    props: Props,
+    setupContext: SetupContext
   ) => {
     refer?: Refer;
     render?: () => any;
@@ -56,8 +56,8 @@ export function designComponent<
           },
         };
       },
-      inject: (defaultValue?: Refer): Refer => {
-        return inject(`@@${leftOptions.name}`, defaultValue as any);
+      inject: (defaultValue?: Refer):Refer => {
+        return inject<Refer>(`@@${leftOptions.name}`, defaultValue!);
       },
     },
   };

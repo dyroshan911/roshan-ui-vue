@@ -1,11 +1,5 @@
-import {
-  defineComponent,
-  getCurrentInstance,
-  inject,
-  onBeforeUnmount,
-  provide,
-  reactive,
-} from 'vue';
+import { designComponent } from 'src/use/designComponent';
+import { defineComponent, getCurrentInstance, inject, onBeforeUnmount, provide, reactive } from 'vue';
 
 interface Route {
   path?: string;
@@ -21,10 +15,10 @@ function getRoute(): Route {
   return { path, hash };
 }
 
-const APP_NAVIGATOR_PROVIDER = '@@app-navigator';
+// const APP_NAVIGATOR_PROVIDER = '@@app-navigator';
 
 function useAppNavigator(props: { defaultPath?: string }) {
-  const ctx = getCurrentInstance();
+  // const ctx = getCurrentInstance();
   const currentRoute = getRoute();
   !currentRoute.path && (currentRoute.path = props.defaultPath);
   window.location.hash = encodeURIComponent(currentRoute.path!);
@@ -41,29 +35,33 @@ function useAppNavigator(props: { defaultPath?: string }) {
     },
   };
   window.addEventListener('hashchange', handler.hashchange);
-  onBeforeUnmount(() =>
-    window.removeEventListener('hashchange', handler.hashchange)
-  );
+  onBeforeUnmount(() => window.removeEventListener('hashchange', handler.hashchange));
   const refer = {
     state,
     methods,
   };
-  (ctx as any)._refer = refer;
-  provide(APP_NAVIGATOR_PROVIDER, refer);
+  // (ctx as any)._refer = refer;
+  // provide(APP_NAVIGATOR_PROVIDER, refer);
   return refer;
 }
 
-export function injectAppNavigator() {
-  return inject(APP_NAVIGATOR_PROVIDER) as ReturnType<typeof useAppNavigator>;
-}
+// export function injectAppNavigator() {
+//   return inject(APP_NAVIGATOR_PROVIDER) as ReturnType<typeof useAppNavigator>;
+// }
 
-export const AppNavigator = defineComponent({
+export const AppNavigator = designComponent({
   name: 'app-navigator',
   props: {
     defaultPath: String,
   },
+  provideRefer: true,
   setup(props, context) {
-    useAppNavigator(props);
-    return () => (!!context.slots.default ? context.slots.default() : null);
+    const refer = useAppNavigator(props!);
+    return {
+      render() {
+        return (!!context!.slots.default ? context!.slots.default() : null)
+      },
+      refer
+    }
   },
 });

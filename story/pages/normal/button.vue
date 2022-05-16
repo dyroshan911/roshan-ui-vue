@@ -1,5 +1,14 @@
 <template>
-  <div>button</div>
+  <div>
+    <rs-button label="test1">test</rs-button>
+    <h3>状态</h3>
+    <rs-button
+      v-for="status in ['primary', 'success', 'warn', 'error', 'info']"
+      :key="status"
+      :label="status"
+      :status="status"
+    />
+  </div>
 </template>
 
 <script lang="ts">
@@ -8,4 +17,4 @@ export default {
 };
 </script>
 
-<style></style>
+<style lang="scss"></style>
