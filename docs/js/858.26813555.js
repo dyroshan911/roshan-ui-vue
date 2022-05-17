@@ -1,2 +1,0 @@
-"use strict";(self["webpackChunkroshan_ui_vue"]=self["webpackChunkroshan_ui_vue"]||[]).push([[858],{6858:function(u,n,e){e.r(n),e.d(n,{default:function(){return s}});var r=e(3396);function a(u,n,e,a,t,o){return(0,r.wg)(),(0,r.iD)("div",null,"layout")}var t={name:"demo-layout"},o=e(89);const i=(0,o.Z)(t,[["render",a]]);var s=i}}]);
-//# sourceMappingURL=858.26813555.js.map
