@@ -1,6 +1,8 @@
 import { designComponent } from 'src/use/designComponent';
 import { computed } from 'vue';
 import './button.scss';
+console.log('加载了button 组件');
+
 export default designComponent({
   name: 'rs-button',
   props: {

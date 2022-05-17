@@ -1,6 +1,7 @@
 import { designComponent } from 'src/use/designComponent';
 import { computed, ref } from 'vue';
 import './inputs.scss';
+console.log('加载了input组件');
 
 export default designComponent({
   name: 'rs-input',
@@ -31,12 +32,12 @@ export default designComponent({
       render: () => (
         <div class={classes.value}>
           <input
-            class='rs-input-inner'
-            type='text'
+            class="rs-input-inner"
+            type="text"
             v-model={inputValue.value}
             ref={inputRef}
           />
-          <button class='rs-input-clear' onClick={methods.clear}>
+          <button class="rs-input-clear" onClick={methods.clear}>
             clear
           </button>
         </div>
