@@ -59,12 +59,10 @@ export function designComponent<
     } as any),
     use: {
       ref: (refName: string) => {
-        const ctx = getCurrentInstance();
-        console.log(ctx);
-
+        const ctx = getCurrentInstance() as any;
         return {
           get value(): Refer {
-            return (ctx!.refs[refName] as any).$$refer;
+            return (ctx.refs[refName] && ctx.refs[refName].$$refer) || null;
           },
         };
       },
