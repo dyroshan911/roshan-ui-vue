@@ -32,8 +32,18 @@ export function designComponent<
           return null;
         }
         const { refer, render } = _setup(props, context);
-        const ctx = getCurrentInstance() as any;
-        ctx._refer = refer;
+        const ctx = getCurrentInstance();
+        if (!!refer) {
+          const duplicateKeys = Object.keys(leftOptions.props || {}).find(
+            (prop) => prop === '$$refer'
+          );
+          if (!!duplicateKeys) {
+            console.error(`designComponent: duplicate key $$refer in props`);
+          } else {
+            // ctx!.proxy.$$refer = refer;
+            Object.assign(ctx!.proxy, { $$refer: refer });
+          }
+        }
         if (provideRefer) {
           if (!leftOptions.name) {
             console.error(
@@ -49,14 +59,16 @@ export function designComponent<
     } as any),
     use: {
       ref: (refName: string) => {
-        const ctx = getCurrentInstance() as any;
+        const ctx = getCurrentInstance();
+        console.log(ctx);
+
         return {
           get value(): Refer {
-            return ctx.ctx.$refs[refName].$._refer;
+            return (ctx!.refs[refName] as any).$$refer;
           },
         };
       },
-      inject: (defaultValue?: Refer):Refer => {
+      inject: (defaultValue?: Refer): Refer => {
         return inject<Refer>(`@@${leftOptions.name}`, defaultValue!);
       },
     },
