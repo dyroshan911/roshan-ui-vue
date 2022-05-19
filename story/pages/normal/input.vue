@@ -9,8 +9,8 @@
       style="margin-right: 8px; margin-top: 8px"
     />
     <h4>类型提示</h4>
-    <rs-input ref="myInput" />
-    <button @click="handleClear">out clear</button>
+    <rs-input ref="myInput" @focuss="focuss" />
+    <button @click="clear">out clear</button>
   </div>
 </template>
 
@@ -20,11 +20,16 @@ export default {
   name: 'demo-input',
   setup() {
     const inputRef = Input.use.ref('myInput');
-    const handleClear = () => {
-      inputRef.value.methods.clear();
+    const handler = {
+      clear: () => {
+        inputRef.value.methods.clear();
+      },
+      focuss: (msg: string) => {
+        console.log('get ----', msg);
+      },
     };
     return {
-      handleClear,
+      ...handler,
     };
   },
 };

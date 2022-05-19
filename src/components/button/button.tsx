@@ -11,7 +11,7 @@ export default designComponent({
     },
     status: { type: String, default: 'primary' },
   },
-  setup(props, setupContext) {
+  setup({ props, setupContext }) {
     const classes = computed(() => [
       'rs-button',
       `rs-button-status-${props.status}`,

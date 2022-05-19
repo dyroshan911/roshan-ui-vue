@@ -1,5 +1,5 @@
 import { designComponent } from '../../use/designComponent';
-import { computed, ref } from 'vue';
+import { computed, onMounted, ref } from 'vue';
 import './inputs.scss';
 console.log('加载了input组件');
 
@@ -8,13 +8,21 @@ export default designComponent({
   props: {
     status: { type: String, default: 'primary' },
   },
-  setup(props) {
+  emits: {
+    focuss: (msg: string) => true,
+  },
+  setup({ props, event }) {
     const inputValue = ref('');
     const inputRef = ref<null | HTMLInputElement>(null);
     const classes = computed(() => [
       'rs-input',
       `rs-input-status-${props!.status}`,
     ]);
+    // event.on.focuss((msg) => console.log(msg));
+    onMounted(() => {
+      event.emit.focuss('mounted');
+    });
+
     const methods = {
       clear() {
         inputValue.value = '';

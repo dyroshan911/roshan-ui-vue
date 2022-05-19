@@ -31,24 +31,23 @@ export type ComponentEvent<Emit> = {
   on: {
     [key in keyof Emit]: (
       cb: (...args: EventHandler<Emit[key]>) => void
-    ) => void;
+    ) => () => void;
   };
   once: {
     [key in keyof Emit]: (
       cb: (...args: EventHandler<Emit[key]>) => void
-    ) => void;
+    ) => () => void;
   };
   off: {
     [key in keyof Emit]: (
       cb: (...args: EventHandler<Emit[key]>) => void
-    ) => void;
+    ) => () => void;
   };
 };
 
 export function useEvent<T>(emitObj: T): ComponentEvent<T> {
   const ctx = getCurrentInstance()!;
   const events = createRsEvent();
-
   const emit = {} as any;
   const on = {} as any;
   const off = {} as any;

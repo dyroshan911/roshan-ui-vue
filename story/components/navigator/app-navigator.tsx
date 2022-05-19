@@ -1,5 +1,12 @@
 import { designComponent } from 'src/use/designComponent';
-import { defineComponent, getCurrentInstance, inject, onBeforeUnmount, provide, reactive } from 'vue';
+import {
+  defineComponent,
+  getCurrentInstance,
+  inject,
+  onBeforeUnmount,
+  provide,
+  reactive,
+} from 'vue';
 
 interface Route {
   path?: string;
@@ -35,7 +42,9 @@ function useAppNavigator(props: { defaultPath?: string }) {
     },
   };
   window.addEventListener('hashchange', handler.hashchange);
-  onBeforeUnmount(() => window.removeEventListener('hashchange', handler.hashchange));
+  onBeforeUnmount(() =>
+    window.removeEventListener('hashchange', handler.hashchange)
+  );
   const refer = {
     state,
     methods,
@@ -55,13 +64,15 @@ export const AppNavigator = designComponent({
     defaultPath: String,
   },
   provideRefer: true,
-  setup(props, context) {
+  setup({ props, setupContext }) {
     const refer = useAppNavigator(props!);
     return {
       render() {
-        return (!!context!.slots.default ? context!.slots.default() : null)
+        return !!setupContext!.slots.default
+          ? setupContext!.slots.default()
+          : null;
       },
-      refer
-    }
+      refer,
+    };
   },
 });

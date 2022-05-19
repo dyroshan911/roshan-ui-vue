@@ -19,11 +19,11 @@ export function designComponent<
   provideRefer?: boolean;
   props?: PropsOptions;
   emits?: Emits;
-  setup: (
-    props: Props,
-    event: ComponentEvent<Emits>,
-    setupContext: SetupContext
-  ) => {
+  setup: (props: {
+    props: Props;
+    event: ComponentEvent<Emits>;
+    setupContext: SetupContext;
+  }) => {
     refer?: Refer;
     render?: () => any;
   };
@@ -36,13 +36,13 @@ export function designComponent<
   } = componentOptions;
   return {
     ...defineComponent({
-      setup(props: Props, context: SetupContext) {
+      setup(props: Props, setupContext: SetupContext) {
         if (!_setup) {
           return null;
         }
         const ctx = getCurrentInstance();
         const event = useEvent<Emits>(emits!);
-        const { refer, render } = _setup(props, event, context);
+        const { refer, render } = _setup({ props, event, setupContext });
 
         if (!!refer) {
           const duplicateKeys = Object.keys(leftOptions.props || {}).find(
