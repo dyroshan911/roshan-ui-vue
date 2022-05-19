@@ -7,32 +7,43 @@ import {
   inject,
   SetupContext,
 } from 'vue';
+import { ComponentEvent, useEvent } from './useEvent';
 
 export function designComponent<
   PropsOptions extends Readonly<ComponentPropsOptions>,
   Props extends Readonly<ExtractPropTypes<PropsOptions>>,
+  Emits extends { [k: string]: (...args: any[]) => boolean },
   Refer
 >(componentOptions: {
   name?: string;
   provideRefer?: boolean;
   props?: PropsOptions;
-  setup?: (
+  emits?: Emits;
+  setup: (
     props: Props,
+    event: ComponentEvent<Emits>,
     setupContext: SetupContext
   ) => {
     refer?: Refer;
     render?: () => any;
   };
 }) {
-  const { setup: _setup, provideRefer, ...leftOptions } = componentOptions;
+  const {
+    setup: _setup,
+    provideRefer,
+    emits,
+    ...leftOptions
+  } = componentOptions;
   return {
     ...defineComponent({
       setup(props: Props, context: SetupContext) {
         if (!_setup) {
           return null;
         }
-        const { refer, render } = _setup(props, context);
         const ctx = getCurrentInstance();
+        const event = useEvent<Emits>(emits!);
+        const { refer, render } = _setup(props, event, context);
+
         if (!!refer) {
           const duplicateKeys = Object.keys(leftOptions.props || {}).find(
             (prop) => prop === '$$refer'
