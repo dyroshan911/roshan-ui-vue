@@ -1,6 +1,6 @@
 <template>
   <div>
-    <rs-button label="test1">test</rs-button>
+    <rs-button label="test1" @click="click">test</rs-button>
     <h3>状态</h3>
     <rs-button
       v-for="status in ['primary', 'success', 'warn', 'error', 'info']"
@@ -14,6 +14,11 @@
 <script lang="ts">
 export default {
   name: 'demo-button',
+  methods: {
+    click: (e: MouseEvent) => {
+      console.log(e, 'click');
+    },
+  },
 };
 </script>
 

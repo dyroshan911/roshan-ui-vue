@@ -11,7 +11,10 @@ export default designComponent({
     },
     status: { type: String, default: 'primary' },
   },
-  setup({ props, setupContext }) {
+  emits: {
+    click: (e: MouseEvent) => true,
+  },
+  setup({ props, setupContext, event }) {
     const classes = computed(() => [
       'rs-button',
       `rs-button-status-${props.status}`,
@@ -19,7 +22,7 @@ export default designComponent({
 
     return {
       render: () => (
-        <button class={classes.value}>
+        <button class={classes.value} onClick={event.emit.click}>
           {(setupContext.slots.default && setupContext.slots.default()) ||
             props.label}
         </button>

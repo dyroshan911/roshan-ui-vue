@@ -7,7 +7,7 @@ import {
   inject,
   SetupContext,
 } from 'vue';
-import { ComponentEvent, useEvent } from './useEvent';
+import { ComponentEvent, getComponentEmit, useEvent } from './useEvent';
 
 export function designComponent<
   PropsOptions extends Readonly<ComponentPropsOptions>,
@@ -22,7 +22,7 @@ export function designComponent<
   setup: (props: {
     props: Props;
     event: ComponentEvent<Emits>;
-    setupContext: SetupContext;
+    setupContext: SetupContext<Emits>;
   }) => {
     refer?: Refer;
     render?: () => any;
@@ -36,7 +36,8 @@ export function designComponent<
   } = componentOptions;
   return {
     ...defineComponent({
-      setup(props: Props, setupContext: SetupContext) {
+      emits: getComponentEmit(emits!),
+      setup(props: Props, setupContext: SetupContext<Emits>) {
         if (!_setup) {
           return null;
         }
