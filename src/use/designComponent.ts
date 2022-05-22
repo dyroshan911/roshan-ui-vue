@@ -19,6 +19,7 @@ export function designComponent<
   provideRefer?: boolean;
   props?: PropsOptions;
   emits?: Emits;
+  components?: any;
   setup: (props: {
     props: Props;
     event: ComponentEvent<Emits>;
@@ -27,7 +28,7 @@ export function designComponent<
     refer?: Refer;
     render?: () => any;
   };
-}) {
+}): any {
   const {
     setup: _setup,
     provideRefer,
