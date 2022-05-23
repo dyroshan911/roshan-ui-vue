@@ -28,7 +28,7 @@ export function designComponent<
     refer?: Refer;
     render?: () => any;
   };
-}): any {
+}) {
   const {
     setup: _setup,
     provideRefer,

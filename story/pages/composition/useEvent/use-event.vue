@@ -2,10 +2,10 @@
   <div>use event</div>
   <use-event-table class="use-event-table">
     <template v-slot:header>
-      <h1>Header</h1>
+      <div class="use-table-head-inner">Header</div>
     </template>
     <template v-slot:body>
-      <h1>body</h1>
+      <div class="use-table-body-inner">body</div>
     </template>
   </use-event-table>
 </template>
@@ -23,10 +23,24 @@ export default {
 <style lang="scss">
 .use-event-table {
   width: 300px;
-  .use-event-table-head,
-  .use-event-table-body {
+  .use-table-head,
+  .use-table-body {
     width: 100%;
     overflow-x: auto;
+  }
+  .use-table-head {
+    .use-table-head-inner {
+      width: 600px;
+      height: 60px;
+      background-color: #06f6f6;
+    }
+  }
+  .use-table-body {
+    height: 300px;
+    .use-table-body-inner {
+      height: 600px;
+      background-color: #f2f2f2;
+    }
   }
 }
 </style>

@@ -5,7 +5,9 @@ export const UseEventTableHeader = designComponent({
   setup: ({ setupContext }) => {
     const { slots } = setupContext;
     return {
-      render: () => <div>{slots.default ? slots.default() : 'ddddd'}</div>,
+      render: () => (
+        <div class='use-table-head'>{slots.default ? slots.default() : ''}</div>
+      ),
     };
   },
 });
