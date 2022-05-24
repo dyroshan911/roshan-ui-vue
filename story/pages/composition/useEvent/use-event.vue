@@ -39,6 +39,7 @@ export default {
     height: 300px;
     .use-table-body-inner {
       height: 600px;
+      width: 600px;
       background-color: #f2f2f2;
     }
   }
