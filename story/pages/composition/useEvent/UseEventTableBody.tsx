@@ -21,8 +21,7 @@ export const UseEventTableBody = designComponent({
         }
       },
     };
-    const unset = table.event.on.scroll(handler.tableScroll);
-    onUnmounted(unset);
+    onUnmounted(table.event.on.scroll(handler.tableScroll));
     return {
       render: () => (
         <div ref={bodyElmRef} onScroll={handler.scroll} class='use-table-body'>

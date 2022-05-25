@@ -23,8 +23,7 @@ export const UseEventTableHeader = designComponent({
         table.event.emit.scroll(e, TablePart.head);
       },
     };
-    const unset = table.event.on.scroll(handler.tableScroll);
-    onUnmounted(unset);
+    onUnmounted(table.event.on.scroll(handler.tableScroll));
     return {
       render: () => (
         <div
