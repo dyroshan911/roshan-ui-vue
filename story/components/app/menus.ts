@@ -49,6 +49,11 @@ export const MENUS: MenuGroup[] = [
         page: '/composition/useEvent/use-event',
         complete: false,
       },
+      {
+        name: 'useModel',
+        page: '/composition/useModel/use-model',
+        complete: false,
+      },
     ],
   },
 ];
