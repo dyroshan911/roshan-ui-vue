@@ -9,7 +9,7 @@
       :status="item"
       style="margin-right: 8px; margin-top: 8px"
     />
-    <h4>类型提示</h4>
+    <h4>类型提示:</h4>
     <rs-input ref="myInput" />
     <button @click="clear">out clear</button>
   </div>
