@@ -1,2 +1,2 @@
 "use strict";(self["webpackChunkroshan_ui_vue"]=self["webpackChunkroshan_ui_vue"]||[]).push([[502],{3502:function(e,u,n){n.r(u),n.d(u,{default:function(){return i}});var r=n(8473);function s(e,u,n,s,a,o){return(0,r.wg)(),(0,r.iD)("div",null,"use model")}var a={name:"use-model-demo"},o=n(5312);const t=(0,o.Z)(a,[["render",s]]);var i=t}}]);
-//# sourceMappingURL=502.be71573b.js.map
+//# sourceMappingURL=502.bef11315.js.map
