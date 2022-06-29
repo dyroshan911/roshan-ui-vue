@@ -54,7 +54,7 @@ export function designComponent<
             console.error(`designComponent: duplicate key $$refer in props`);
           } else {
             // ctx!.proxy.$$refer = refer;
-            Object.assign(ctx!.proxy, { $$refer: refer });
+            Object.assign(ctx!.proxy as any, { $$refer: refer });
           }
         }
         if (provideRefer) {
