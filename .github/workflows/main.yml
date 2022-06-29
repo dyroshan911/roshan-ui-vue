@@ -28,5 +28,8 @@ jobs:
       # Runs a set of commands using the runners shell
       - name: Install & Build 
         run: |
-          npm install
-          npm run deploy
+          yarn
+          git remote set-url origin https://git:${GITHUB_TOKEN}@github.com/${GITHUB_REPOSITORY}.git
+          yarn deploy -- -u "github-actions-bot <support+actions@github.com>"
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
